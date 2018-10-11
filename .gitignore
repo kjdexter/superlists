@@ -3,3 +3,4 @@ __pychache__
 *.pyc
 geckodriver.log
 migrations/
+web.config
