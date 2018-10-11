@@ -25,7 +25,9 @@ SECRET_KEY = '!d2i&8_#((bsib4q1h*6#618!*@62khq95u_x6e*4^x5^z^!%c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'kdexter-desk2'
+]
 
 
 # Application definition
