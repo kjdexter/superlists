@@ -26,7 +26,8 @@ SECRET_KEY = '!d2i&8_#((bsib4q1h*6#618!*@62khq95u_x6e*4^x5^z^!%c'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'kdexter-desk2'
+    'kdexter-desk2',
+    '127.0.0.1',
 ]
 
 
