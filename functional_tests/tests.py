@@ -7,6 +7,7 @@ import unittest
 
 MAX_WAIT = 5
 
+
 class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -26,7 +27,6 @@ class NewVisitorTest(LiveServerTestCase):
                 if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
-
 
     def test_can_start_a_list_for_one_user(self):
         self.browser.get(self.live_server_url)
@@ -60,7 +60,7 @@ class NewVisitorTest(LiveServerTestCase):
         edith_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
 
-        ## New user comes along...
+        # New user comes along...
 
         self.browser.quit()
         self.browser = webdriver.Firefox()
@@ -81,6 +81,3 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
-
-
-        self.fail('Finish the test!')
