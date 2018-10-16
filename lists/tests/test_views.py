@@ -3,6 +3,7 @@ from lists.models import Item, List
 
 # Create your tests here.
 
+
 class HomePageTest(TestCase):
     def test_home_page_returns_correct_html(self):
         response = self.client.get('/')
@@ -46,6 +47,18 @@ class NewListTest(TestCase):
             '/lists/new', data={'item_text': 'A new list item'})
         new_list = List.objects.first()
         self.assertRedirects(response, '/lists/{}/'.format(new_list.id))
+
+    def test_validation_errors_are_sent_back_to_the_home_page_tempalte(self):
+        response = self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+        expected_error = 'You cant have an empty list item'
+        self.assertContains(response, expected_error)
+
+    def test_invalid_list_items_arent_saved(self):
+        self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(List.objects.count(), 0)
+        self.assertEqual(Item.objects.count(), 0)
 
 
 class NewItemTest(TestCase):
